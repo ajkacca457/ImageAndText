@@ -9,5 +9,8 @@
 .wp-block-create-block-imageandtext {
   border: 1px dotted #f00;
 }
+.wp-block-create-block-imageandtext .block-editor-media-placeholder {
+  height: 100%;
+}
 
 /*# sourceMappingURL=index.css.map*/

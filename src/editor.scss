@@ -6,4 +6,8 @@
 
 .wp-block-create-block-imageandtext {
 	border: 1px dotted #f00;
+
+	.block-editor-media-placeholder {
+		height: 100%;
+	}
 }
