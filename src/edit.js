@@ -1,5 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText,MediaPlaceholder, BlockControls,AlignmentToolbar } from '@wordpress/block-editor';
+import { isBlobURL } from "@wordpress/blob";
+import {Spinner} from "@wordpress/components";
 import './editor.scss';
 
 export default function Edit({attributes,setAttributes}) {
@@ -46,9 +48,9 @@ export default function Edit({attributes,setAttributes}) {
 			<div { ...useBlockProps({
 				className:"flex-parent"
 			}) }>
-				<div className='image-content'>
+				<div className={`image-content ${isBlobURL(url)?"is-loading":""}`}>
 					{url && <img src={url} alt={alt} />}
-
+					{isBlobURL(url) && <Spinner/>}
 					<MediaPlaceholder
 						icon="admin-users"
 						onSelect={changeImage}
