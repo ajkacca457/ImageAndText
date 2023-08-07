@@ -1,13 +1,18 @@
 import { useBlockProps, RichText} from '@wordpress/block-editor';
+import classNames from 'classnames';
 
 export default function save({attributes}) {
 
-	const {heading,description,url,alt,alignment}= attributes;
+	const {heading,description,url,alt,alignment,leftImage}= attributes;
+
+	const classes= classNames({
+		"reverse":!leftImage,
+	})
 
 	return (
 		<>
 			<div { ...useBlockProps.save({
-				className:"flex-parent"
+				className:classes
 			}) }>
 				<div className={`image-content`}>
 					{url && <img src={url} alt={alt} />}

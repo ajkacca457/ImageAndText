@@ -1,12 +1,13 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText,MediaPlaceholder, BlockControls,AlignmentToolbar } from '@wordpress/block-editor';
+import { useBlockProps, RichText,MediaPlaceholder, BlockControls,AlignmentToolbar, InspectorControls } from '@wordpress/block-editor';
 import { isBlobURL } from "@wordpress/blob";
-import {Spinner} from "@wordpress/components";
+import {Spinner, PanelBody, ToggleControl} from "@wordpress/components";
+import classNames from "classnames";
 import './editor.scss';
 
 export default function Edit({attributes,setAttributes}) {
 
-	const {heading,description,alignment,id,alt,url}= attributes;
+	const {heading,description,alignment,id,alt,url, leftImage}= attributes;
 
 	const changeHeading = (newHeading) => {
 		setAttributes({ heading: newHeading });
@@ -38,15 +39,36 @@ export default function Edit({attributes,setAttributes}) {
 		})
 	}
 
+	const changeImagePosition=()=>{
+		setAttributes({
+			leftImage:!leftImage
+		})
+	}
+
+	const classes= classNames({
+		"reverse":!leftImage,
+	})
+
+
+
 	return (
 		<>
+			<InspectorControls>
+				<PanelBody>
+					<ToggleControl
+            			label="Is image left?"
+            			checked={ leftImage }
+           	 			onChange={ changeImagePosition }
+        			/>
+				</PanelBody>
+			</InspectorControls>
 
 			<BlockControls>
 				<AlignmentToolbar value={alignment} onChange={changeAlignment}></AlignmentToolbar>
 			</BlockControls>
 
 			<div { ...useBlockProps({
-				className:"flex-parent"
+				className:classes
 			}) }>
 				<div className={`image-content ${isBlobURL(url)?"is-loading":""}`}>
 					{url && <img src={url} alt={alt} />}

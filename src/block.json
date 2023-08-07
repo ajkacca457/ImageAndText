@@ -40,6 +40,10 @@
 			"type": "string",
 			"default": "left"
 		},
+		"leftImage":{
+			"type":"boolean",
+			"default":true
+		},
 		"id":{
 			"type":"number"
 		},

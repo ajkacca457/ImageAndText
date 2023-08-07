@@ -57,4 +57,8 @@
   text-align: center;
 }
 
+.reverse {
+  flex-direction: row-reverse;
+}
+
 /*# sourceMappingURL=style-index.css.map*/
