@@ -25,5 +25,22 @@
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "viewScript": "file:./view.js",
-  "attributes": {}
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "source": "html",
+      "selector": "h2",
+      "default": "Static React Block"
+    },
+    "description": {
+      "type": "string",
+      "source": "html",
+      "selector": "p",
+      "default": "This is a static react block."
+    },
+    "alignment": {
+      "type": "string",
+      "default": "left"
+    }
+  }
 }

@@ -23,10 +23,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Edit() {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
+    heading,
+    description,
+    alignment
+  } = attributes;
+  const changeHeading = newHeading => {
+    setAttributes({
+      heading: newHeading
+    });
+  };
+  const changeDescription = newDescription => {
+    setAttributes({
+      description: newDescription
+    });
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Boilerplate – hello from the editor!', 'boilerplate'));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "h1",
+    value: heading,
+    onChange: changeHeading,
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title of the block", "imageandtext")
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "p",
+    value: description,
+    onChange: changeDescription,
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Description of the block", "imageandtext")
+  }))));
 }
 
 /***/ }),
@@ -150,7 +178,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/imageandtext","version":"0.1.0","title":"ImageAndText","category":"widgets","description":"Example block scaffolded with Create Block tool.","supports":{"html":false,"color":{"background":true,"text":true},"spacing":{"padding":true},"fontSize":true},"keywords":["card,column-card,display-card"],"textdomain":"imageandtext","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{}}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/imageandtext","version":"0.1.0","title":"ImageAndText","category":"widgets","description":"Example block scaffolded with Create Block tool.","supports":{"html":false,"color":{"background":true,"text":true},"spacing":{"padding":true},"fontSize":true},"keywords":["card,column-card,display-card"],"textdomain":"imageandtext","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"heading":{"type":"string","source":"html","selector":"h2","default":"Static React Block"},"description":{"type":"string","source":"html","selector":"p","default":"This is a static react block."},"alignment":{"type":"string","default":"left"}}}');
 
 /***/ })
 
