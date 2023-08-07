@@ -30,7 +30,10 @@ function Edit({
   const {
     heading,
     description,
-    alignment
+    alignment,
+    id,
+    alt,
+    url
   } = attributes;
   const changeHeading = newHeading => {
     setAttributes({
@@ -47,6 +50,21 @@ function Edit({
       alignment: newAlignment
     });
   };
+  const changeImage = image => {
+    if (!image || !image.url) {
+      setAttributes({
+        id: undefined,
+        alt: undefined,
+        url: undefined
+      });
+      return;
+    }
+    setAttributes({
+      id: image.id,
+      alt: image.alt,
+      url: image.url
+    });
+  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
     value: alignment,
     onChange: changeAlignment
@@ -56,7 +74,17 @@ function Edit({
     })
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "image-content"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, url && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: url,
+    alt: alt
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
+    icon: "admin-users",
+    onSelect: changeImage,
+    onError: value => console.log(value),
+    accept: "image/*",
+    allowedTypes: ["image"],
+    disableMediaButtons: url
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: `content align-${alignment}`
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "h1",
