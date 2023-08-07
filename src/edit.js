@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps, RichText,MediaPlaceholder } from '@wordpress/block-editor';
 import './editor.scss';
 
 export default function Edit({attributes,setAttributes}) {
@@ -16,8 +16,13 @@ export default function Edit({attributes,setAttributes}) {
 
 	return (
 		<>
-			<div { ...useBlockProps() }>
-				<div> 
+			<div { ...useBlockProps({
+				className:"flex-parent"
+			}) }>
+				<div className='image-content'>
+					<MediaPlaceholder></MediaPlaceholder>
+				</div>
+				<div className='content'> 
 					<RichText tagName='h1' value={heading} onChange={changeHeading} placeholder={__("Title of the block","imageandtext")} />
 					<RichText tagName='p' value={description} onChange={changeDescription} placeholder={__("Description of the block","imageandtext")}/>
 				</div>

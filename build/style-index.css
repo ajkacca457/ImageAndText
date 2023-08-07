@@ -13,6 +13,16 @@
   padding: 2px;
   max-width: 800px;
   margin: auto;
+  display: flex;
+}
+.wp-block-create-block-imageandtext > div {
+  margin: 10px;
+}
+.wp-block-create-block-imageandtext .image-content {
+  width: 50%;
+}
+.wp-block-create-block-imageandtext .content {
+  width: 50%;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

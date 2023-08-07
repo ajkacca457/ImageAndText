@@ -11,4 +11,20 @@
 	padding: 2px;
 	max-width: 800px;
 	margin: auto;
+	display: flex;
+
+	> div {
+		margin: 10px;
+	}
+
+	.image-content {
+		width: 50%;	
+	}
+
+	.content {
+		width: 50%;
+	}
+
+
 }
+

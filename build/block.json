@@ -29,7 +29,7 @@
     "heading": {
       "type": "string",
       "source": "html",
-      "selector": "h2",
+      "selector": "h1",
       "default": "Static React Block"
     },
     "description": {
