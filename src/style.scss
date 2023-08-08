@@ -69,3 +69,11 @@
 .reverse {
 	flex-direction: row-reverse;
 }
+.placeholder {
+	background-color: white;
+	font-size: 120%;;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}

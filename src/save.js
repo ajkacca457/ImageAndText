@@ -15,7 +15,7 @@ export default function save({attributes}) {
 				className:classes
 			}) }>
 				<div className={`image-content`}>
-					{url && <img src={url} alt={alt} />}
+					{url ?<img src={url} alt={alt} />: <div className='placeholder'> placeholder image</div>}
 				</div>
 				<div className={`content align-${alignment}`}> 
 					<RichText.Content tagName='h1' value={heading} />

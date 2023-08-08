@@ -59,6 +59,16 @@
 			"source": "attribute",
 			"selector": "img",
 			"attribute": "src"
+		},
+		"style": {
+			"type": "object",
+			"default": {
+				"padding": "10px",
+				"color":{
+					"background":"#fcb900",
+					"text":"#000000"
+				}
+			}
 		}
 	}
 }
