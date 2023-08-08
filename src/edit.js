@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
 import { useBlockProps, RichText,MediaPlaceholder, BlockControls,AlignmentToolbar, InspectorControls,MediaReplaceFlow } from '@wordpress/block-editor';
 import { isBlobURL, revokeBlobURL } from "@wordpress/blob";
-import {Spinner, PanelBody, ToggleControl} from "@wordpress/components";
+import {Spinner, PanelBody, ToggleControl, ToolbarButton} from "@wordpress/components";
 import classNames from "classnames";
 import './editor.scss';
 
@@ -48,6 +48,14 @@ export default function Edit({attributes,setAttributes}) {
 		})
 	}
 
+	const deleteImage=()=>{
+		setAttributes({
+			url:undefined,
+			id:undefined,
+			alt:""
+		})
+	}
+
 	const classes= classNames({
 		"reverse":!leftImage,
 	})
@@ -87,15 +95,21 @@ export default function Edit({attributes,setAttributes}) {
 				<AlignmentToolbar value={alignment} onChange={changeAlignment}></AlignmentToolbar>
 			</BlockControls>
 
-			<BlockControls group="block">
+			{url && <BlockControls group="block">
 				<MediaReplaceFlow
 					name={__("Change image","imageandtext")} 
 					onSelect={changeImage}
 					onError={(value)=>console.log(value)}
 					accept='image/*'
 					allowedTypes={["image"]}
-					disableMediaButtons={url}/>
+					mediaId={id}
+					mediaURL={url}/>
+
+				<ToolbarButton onClick={deleteImage}>
+					{__("Delete image","imageandtext")}
+				</ToolbarButton>
 			</BlockControls>
+			}
 
 			<div { ...useBlockProps({
 				className:classes
