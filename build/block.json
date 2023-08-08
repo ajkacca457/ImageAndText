@@ -17,6 +17,16 @@
     },
     "fontSize": true
   },
+  "example": {
+    "attributes": {
+      "heading": "This is an example",
+      "description": "This is lorem ipsum text for the example block",
+      "alignment": "left",
+      "leftImage": true,
+      "background": "#fcb900",
+      "text": "#000000"
+    }
+  },
   "keywords": [
     "card,column-card,display-card"
   ],
@@ -45,6 +55,10 @@
     "leftImage": {
       "type": "boolean",
       "default": true
+    },
+    "roundedCorner": {
+      "type": "boolean",
+      "default": "false"
     },
     "id": {
       "type": "number"

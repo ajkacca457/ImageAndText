@@ -8,7 +8,7 @@ import './editor.scss';
 
 export default function Edit({attributes,setAttributes}) {
 
-	const {heading,description,alignment,id,alt,url, leftImage}= attributes;
+	const {heading,description,alignment,id,alt,url, leftImage, roundedCorner}= attributes;
 
 	const [blobUrl, setBlobUrl]= useState();
 
@@ -48,6 +48,12 @@ export default function Edit({attributes,setAttributes}) {
 		})
 	}
 
+	const changeImageRadius=()=>{
+		setAttributes({
+			roundedCorner:!roundedCorner
+		})
+	}
+
 	const deleteImage=()=>{
 		setAttributes({
 			url:undefined,
@@ -58,6 +64,7 @@ export default function Edit({attributes,setAttributes}) {
 
 	const classes= classNames({
 		"reverse":!leftImage,
+		"rounded-corner":roundedCorner
 	})
 
 	useEffect(()=>{
@@ -87,6 +94,11 @@ export default function Edit({attributes,setAttributes}) {
             			label="Is image left?"
             			checked={ leftImage }
            	 			onChange={ changeImagePosition }
+        			/>
+					<ToggleControl
+            			label="Rounded Corner?"
+            			checked={ roundedCorner }
+           	 			onChange={ changeImageRadius }
         			/>
 				</PanelBody>
 			</InspectorControls>

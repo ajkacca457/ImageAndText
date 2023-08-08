@@ -3,10 +3,12 @@ import classNames from 'classnames';
 
 export default function save({attributes}) {
 
-	const {heading,description,url,alt,alignment,leftImage}= attributes;
+	const {heading,description,url,alt,alignment,leftImage, roundedCorner}= attributes;
 
 	const classes= classNames({
 		"reverse":!leftImage,
+		"rounded-corner":roundedCorner
+
 	})
 
 	return (

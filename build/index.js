@@ -44,7 +44,8 @@ function Edit({
     id,
     alt,
     url,
-    leftImage
+    leftImage,
+    roundedCorner
   } = attributes;
   const [blobUrl, setBlobUrl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const changeHeading = newHeading => {
@@ -82,6 +83,11 @@ function Edit({
       leftImage: !leftImage
     });
   };
+  const changeImageRadius = () => {
+    setAttributes({
+      roundedCorner: !roundedCorner
+    });
+  };
   const deleteImage = () => {
     setAttributes({
       url: undefined,
@@ -90,7 +96,8 @@ function Edit({
     });
   };
   const classes = classnames__WEBPACK_IMPORTED_MODULE_5___default()({
-    "reverse": !leftImage
+    "reverse": !leftImage,
+    "rounded-corner": roundedCorner
   });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!id && (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_3__.isBlobURL)(url)) {
@@ -112,6 +119,10 @@ function Edit({
     label: "Is image left?",
     checked: leftImage,
     onChange: changeImagePosition
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+    label: "Rounded Corner?",
+    checked: roundedCorner,
+    onChange: changeImageRadius
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
     value: alignment,
     onChange: changeAlignment
@@ -215,10 +226,12 @@ function save({
     url,
     alt,
     alignment,
-    leftImage
+    leftImage,
+    roundedCorner
   } = attributes;
   const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()({
-    "reverse": !leftImage
+    "reverse": !leftImage,
+    "rounded-corner": roundedCorner
   });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
@@ -412,7 +425,7 @@ module.exports = window["wp"]["i18n"];
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/imageandtext","version":"0.1.0","title":"ImageAndText","category":"widgets","description":"Example block scaffolded with Create Block tool.","supports":{"html":false,"color":{"background":true,"text":true},"spacing":{"padding":true},"fontSize":true},"keywords":["card,column-card,display-card"],"textdomain":"imageandtext","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"heading":{"type":"string","source":"html","selector":"h1","default":"Static React Block"},"description":{"type":"string","source":"html","selector":"p","default":"This is a static react block."},"alignment":{"type":"string","default":"left"},"leftImage":{"type":"boolean","default":true},"id":{"type":"number"},"alt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"url":{"type":"string","source":"attribute","selector":"img","attribute":"src"},"style":{"type":"object","default":{"padding":"10px","color":{"background":"#fcb900","text":"#000000"}}}}}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/imageandtext","version":"0.1.0","title":"ImageAndText","category":"widgets","description":"Example block scaffolded with Create Block tool.","supports":{"html":false,"color":{"background":true,"text":true},"spacing":{"padding":true},"fontSize":true},"example":{"attributes":{"heading":"This is an example","description":"This is lorem ipsum text for the example block","alignment":"left","leftImage":true,"background":"#fcb900","text":"#000000"}},"keywords":["card,column-card,display-card"],"textdomain":"imageandtext","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"heading":{"type":"string","source":"html","selector":"h1","default":"Static React Block"},"description":{"type":"string","source":"html","selector":"p","default":"This is a static react block."},"alignment":{"type":"string","default":"left"},"leftImage":{"type":"boolean","default":true},"roundedCorner":{"type":"boolean","default":"false"},"id":{"type":"number"},"alt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"url":{"type":"string","source":"attribute","selector":"img","attribute":"src"},"style":{"type":"object","default":{"padding":"10px","color":{"background":"#fcb900","text":"#000000"}}}}}');
 
 /***/ })
 
