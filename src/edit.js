@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
-import { useBlockProps, RichText,MediaPlaceholder, BlockControls,AlignmentToolbar, InspectorControls } from '@wordpress/block-editor';
-import { isBlobURL } from "@wordpress/blob";
+import { useEffect, useState } from '@wordpress/element';
+import { useBlockProps, RichText,MediaPlaceholder, BlockControls,AlignmentToolbar, InspectorControls,MediaReplaceFlow } from '@wordpress/block-editor';
+import { isBlobURL, revokeBlobURL } from "@wordpress/blob";
 import {Spinner, PanelBody, ToggleControl} from "@wordpress/components";
 import classNames from "classnames";
 import './editor.scss';
@@ -9,6 +9,8 @@ import './editor.scss';
 export default function Edit({attributes,setAttributes}) {
 
 	const {heading,description,alignment,id,alt,url, leftImage}= attributes;
+
+	const [blobUrl, setBlobUrl]= useState();
 
 	const changeHeading = (newHeading) => {
 		setAttributes({ heading: newHeading });
@@ -59,7 +61,15 @@ export default function Edit({attributes,setAttributes}) {
 		}
 	},[])
 
+	useEffect(()=>{
+		if(isBlobURL(url)) {
+			setBlobUrl(url)
+		} else {
+			revokeBlobURL(blobUrl);
+			setBlobUrl();
+		}
 
+	},[url])
 
 	return (
 		<>
@@ -75,6 +85,16 @@ export default function Edit({attributes,setAttributes}) {
 
 			<BlockControls>
 				<AlignmentToolbar value={alignment} onChange={changeAlignment}></AlignmentToolbar>
+			</BlockControls>
+
+			<BlockControls group="block">
+				<MediaReplaceFlow
+					name={__("Change image","imageandtext")} 
+					onSelect={changeImage}
+					onError={(value)=>console.log(value)}
+					accept='image/*'
+					allowedTypes={["image"]}
+					disableMediaButtons={url}/>
 			</BlockControls>
 
 			<div { ...useBlockProps({

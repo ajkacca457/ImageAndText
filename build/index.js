@@ -46,6 +46,7 @@ function Edit({
     url,
     leftImage
   } = attributes;
+  const [blobUrl, setBlobUrl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
   const changeHeading = newHeading => {
     setAttributes({
       heading: newHeading
@@ -92,6 +93,14 @@ function Edit({
       });
     }
   }, []);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if ((0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_3__.isBlobURL)(url)) {
+      setBlobUrl(url);
+    } else {
+      (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_3__.revokeBlobURL)(blobUrl);
+      setBlobUrl();
+    }
+  }, [url]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
     label: "Is image left?",
     checked: leftImage,
@@ -99,6 +108,15 @@ function Edit({
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
     value: alignment,
     onChange: changeAlignment
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, {
+    group: "block"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaReplaceFlow, {
+    name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Change image", "imageandtext"),
+    onSelect: changeImage,
+    onError: value => console.log(value),
+    accept: "image/*",
+    allowedTypes: ["image"],
+    disableMediaButtons: url
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
       className: classes
